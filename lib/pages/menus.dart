@@ -49,7 +49,7 @@ class menu extends StatelessWidget {
 
 
 
-                    }, child: Text("ADD TUTOR"),
+                    }, child: Text("ADD TUTORS"),
                   ),
                 ),
 
