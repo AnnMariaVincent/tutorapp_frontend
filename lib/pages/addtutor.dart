@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_new/service/postservice.dart';
 
 class add extends StatefulWidget {
   const add({super.key});
@@ -8,6 +9,20 @@ class add extends StatefulWidget {
 }
 
 class _addState extends State<add> {
+  String getpro="",getname="",getsub="",getloc="";
+  TextEditingController pro=new TextEditingController();
+  TextEditingController name=new TextEditingController();
+  TextEditingController sub=new TextEditingController();
+  TextEditingController loc=new TextEditingController();
+  void sendbutton()async{
+    final response=await PostApiService().sendbutton(pro.text, name.text, sub.text, loc.text);
+    if (response['status'] == 'sucess') {
+      print("sucessfully add");
+    }
+    else {
+      print("error");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,6 +54,7 @@ class _addState extends State<add> {
               children: [
                 SizedBox(height: 30,),
                 TextField(
+                  controller: pro,
 
                   decoration: InputDecoration(
                       labelText: ("PROFILE PICTURE"),
@@ -48,6 +64,7 @@ class _addState extends State<add> {
                 ),
                 SizedBox(height: 30,),
                 TextField(
+                  controller: name,
 
                   decoration: InputDecoration(
                       labelText: ("NAME"),
@@ -57,6 +74,7 @@ class _addState extends State<add> {
                 ),
                 SizedBox(height: 30,),
                 TextField(
+                  controller: sub,
 
                   decoration: InputDecoration(
                       labelText: ("SUBJECTS"),
@@ -66,6 +84,7 @@ class _addState extends State<add> {
                 ),
                 SizedBox(height: 30,),
                 TextField(
+                  controller: loc,
 
                   decoration: InputDecoration(
                       labelText: ("Location"),
@@ -83,6 +102,7 @@ class _addState extends State<add> {
                     ),
                     onPressed: ()
                     {
+                      sendbutton();
 
 
                     }, child: Text("SUBMIT"),
